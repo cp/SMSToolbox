@@ -1,4 +1,5 @@
 <?php
+include_once("utils.php");
 
 class ebay {
     static $endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
@@ -78,7 +79,7 @@ class ebay {
         $apicalla .= "&SECURITY-APPNAME=".ebay::$appid;
         $apicalla .= "&GLOBAL-ID=".ebay::$globalid;
         $apicalla .= "&keywords=$safequery";
-        $apicalla .= "&paginationInput.entriesPerPage=20";
+        $apicalla .= "&paginationInput.entriesPerPage=1";
 
          // Load the call and capture the document returned by eBay API
         $resp = simplexml_load_file($apicalla);
@@ -100,7 +101,7 @@ class ebay {
                     // print_r($item);
                     // $link = $item->viewItemURL;
                     $title = $item->title;
-                    $results .= "$title - ".$item->sellingStatus->currentPrice;
+                    $results .= "$title - ".shortenurl($item->viewItemURL);
                 }
                 return $results;
             }
