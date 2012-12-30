@@ -9,7 +9,6 @@ CREATE TABLE `message`(
 	account_sid     VARCHAR(50)		NOT NULL,
 	message_from    VARCHAR(50)		NOT NULL,
 	message_to      VARCHAR(50)		NOT NULL,
-	message_body    TEXT			NOT NULL,
 	status          VARCHAR(50)		NOT NULL,
 	direction       VARCHAR(50)		NOT NULL,
 	price           VARCHAR(50)		NOT NULL,

@@ -1,4 +1,5 @@
 <?php
+include_once('includes/db.inc.php');
 /***********************************************************************/
 /* Helper functions                                                    */
 /***********************************************************************/
@@ -56,8 +57,12 @@ function process() {
     $sms = $_REQUEST;
     $body = getCommand($_REQUEST['Body']);
     $sms['Body'] = $body;
-
+    
+    // insert the message into the database
+    insertMessage($sms);
+    
     header("content-type: text/xml");
+    
     $msg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
     $response = "";

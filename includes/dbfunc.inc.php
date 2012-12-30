@@ -26,7 +26,6 @@ function insertMessage($body){
                         account_sid,
                         message_from,
                         message_to,
-                        message_body,
                         status,
                         direction,
                         price,
@@ -44,17 +43,16 @@ function insertMessage($body){
                     '".DB::escape($body['AccountSid'])."',
                     '".DB::escape($body['From'])."',
                     '".DB::escape($body['To'])."',
-                    '".DB::escape($body['Body'])."',
                     '".DB::escape($body['Status'])."',
                     '".DB::escape($body['Direction'])."',
                     '".DB::escape($body['Price'])."',
                     '".DB::escape($body['ApiVersion'])."',
                     '".DB::escape($body['Uri'])."',
-                    '".DB::escape($body['App'])."',
-                    '".DB::escape($body['Feature'])."',
-                    '".DB::escape($body['Command'])."'
+                    '".DB::escape($body['Body']['app'])."',
+                    '".DB::escape($body['Body']['feature'])."',
+                    '".DB::escape($body['Body']['command'])."'
+                    
                     )";
-    echo $query;
     
     DB::connect();
     DB::query($query);
