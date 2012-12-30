@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS `message`;
+DROP TABLE IF EXISTS `hangman`;
 
 CREATE TABLE `message`(
 	message_id		INT UNSIGNED	NOT NULL	AUTO_INCREMENT,
@@ -19,4 +20,13 @@ CREATE TABLE `message`(
 	command         TEXT			NOT NULL,
 
 	PRIMARY KEY		(message_id)		
+);
+
+CREATE TABLE `hangman` (
+    game_id         INT UNSIGNED            NOT NULL AUTO_INCREMENT,
+    message_from    VARCHAR(50)             NOT NULL,
+    guesses         INT                     NOT NULL,
+    word            varchar(50)             NOT NULL,
+    current_word    varchar(50)             NOT NULL,
+    PRIMARY KEY     (game_id)
 );

@@ -82,4 +82,44 @@ function update($obj, $table, $whereClause) {
     DB::close();
 }
 
+
+/****************************************************************/
+/* Hangman code                                                 */
+/****************************************************************/
+function startGame($msgFrom, $word, $current_word ) {
+    $query = "insert into hangman(message_from, guesses, word, current_word)
+            values('$msgFrom', 0, '$word', '$current_word')";
+    
+    DB::connect();
+    DB::query($query);
+    DB::close();
+}
+
+function quitGame($msgFrom) {
+    $query = "delete from hangman where message_from = '$msgFrom'";
+    DB::connect();
+    DB::query($query);
+    DB::close();
+}
+
+function getCurrentGame($msgFrom) {
+    $query = "select * from hangman where message_from = '$msgFrom'";
+    DB::connect();
+    $result = DB::query($query);
+    DB::close();
+    
+    return $result;
+}
+
+function updateGame($msgFrom, $current_word, $guesses)
+{
+    $query = "update hangman 
+            set 
+                message_from = '$msgFrom',
+                current_word = '$current_word',
+                guesses = '$guesses'";
+    DB::connect();
+    DB::query($query);
+    DB::close();
+}
 ?>
