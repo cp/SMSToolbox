@@ -80,6 +80,9 @@ function process() {
         case "ascii":
             $response = ascii::process($sms['Body']);
             break;
+        case "chat":
+            $response = chat::process($sms['Body']);
+            break;
         default:
             $response == "Invalid feature request";
             break;
