@@ -2,13 +2,12 @@
 
 class chance {
 
-	public static function process($feature, $command) {
-        switch($feature) {
+    public static function process($body) {
+        switch($body['feature']) {
             case "flip":
                 return chance::coinFlip();
-				break;
-			case "roll":
-				return chance::rollDice($command);
+            case "roll":
+                return chance::rollDice($body['command']);
             default:
                 echo "Feature not found!";
                 break;
@@ -44,6 +43,7 @@ class chance {
 	public static function rollDice($diceRanges) {
 		$minVal = 0;
 		$maxVal = 100;
+                
 		
 		$ranges = explode(" ", $diceRanges);
 		if (sizeof($ranges) == 1) {
@@ -53,12 +53,12 @@ class chance {
 			$maxVal = $ranges[1];
 		}
 		
-		if (is_int($minVal) && is_int($maxVal)) {
+		//if (is_int($minVal) && is_int($maxVal)) {
 			return rand($minVal, $maxVal);
-		} else {
+		//} else {
 			// TODO: LOG ERROR
-			return "Error";
-		}
+		//	return "Error";
+		//}
 	}
 }
 ?>

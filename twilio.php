@@ -27,12 +27,13 @@ function getCommand($message) {
 
         $command = "";
         for ($i = 2; $i < $num_args; ++$i) {
-            $command .= $args[$i];
+            $command .= " " . $args[$i];
         }
+        $command = trim($command);
         $feature = $args[1];
 
-    } else {
-        $feature = '';
+    } else if ($num_args == 2) {
+        $feature = $args[1];
         $command = '';
     }
     $return_args = Array(
@@ -71,10 +72,13 @@ function process() {
             $response = ebay::process($sms['Body']);
             break;
         case "weather":
-            $response = weather::process($body);
+            $response = weather::process($sms['Body']);
+            break;
+        case "chance":
+            $response = chance::process($sms['Body']);
             break;
         default:
-            $response == "Need to put ebay";
+            $response == "Invalid feature request";
             break;
     }
 
