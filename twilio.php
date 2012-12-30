@@ -1,5 +1,5 @@
 <?php
-include_once('includes/db.inc.php');
+//include_once('includes/dbfunc.inc.php');
 /***********************************************************************/
 /* Helper functions                                                    */
 /***********************************************************************/
@@ -60,7 +60,7 @@ function process() {
     $sms['Body'] = $body;
     
     // insert the message into the database
-   insertMessage($sms);
+   //insertMessage($sms);
     
     header("content-type: text/xml");
     

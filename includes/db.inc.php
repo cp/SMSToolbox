@@ -4,7 +4,6 @@
  **/
 
 require_once('includes/dbconn.inc.php');
-require_once('includes/dbfunc.inc.php');
 
 class DB
 {
