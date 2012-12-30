@@ -1,8 +1,9 @@
 <?php
+
 //include_once('includes/dbfunc.inc.php');
-/***********************************************************************/
+/* * ******************************************************************** */
 /* Helper functions                                                    */
-/***********************************************************************/
+/* * ******************************************************************** */
 
 /**
  * Automatically loads all classes within the features folder
@@ -31,13 +32,12 @@ function getCommand($message) {
         }
         $command = trim($command);
         $feature = $args[1];
-
     } else if ($num_args == 2) {
         $feature = $args[1];
         $command = '';
     }
     $return_args = Array(
-        "app" =>  $args[0],
+        "app" => $args[0],
         "command" => $command,
         "feature" => $feature,
     );
@@ -45,25 +45,24 @@ function getCommand($message) {
     return $return_args;
 }
 
-/***********************************************************************/
+/* * ******************************************************************** */
 /* Main entry function                                                 */
-/***********************************************************************/
+/* * ******************************************************************** */
 
 /**
  * The main function that does everything
  */
-
 function process() {
 
     $sms = $_REQUEST;
     $body = getCommand($_REQUEST['Body']);
     $sms['Body'] = $body;
-    
+
     // insert the message into the database
-     //  insertMessage($sms);
+    //  insertMessage($sms);
 
     header("content-type: text/xml");
-    
+
     $msg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
     $response = "";
@@ -82,6 +81,8 @@ function process() {
             break;
         case "hangman":
             $response = hangman::process($sms);
+        case "chat":
+            $response = chat::process($sms['Body']);
             break;
         default:
             $response == "Invalid feature request";
@@ -96,5 +97,4 @@ function process() {
 }
 
 echo process();
-
 ?>
