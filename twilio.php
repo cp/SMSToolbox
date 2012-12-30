@@ -94,8 +94,8 @@ function process() {
         case "chat":
             $response = chat::process($sms['Body']);
             break;
-        case "help":
-            $response = "Welcome to balls bot. Make use of one of the following features: ebay, weather, chance, ascii, hangman, chat";
+        case "intro":
+            $response = "Welcome to SMS Toolbox. Make use of one of the following features: ebay, weather, chance, ascii, hangman, chat";
             break;
         default:
             $response == "Invalid feature request. Type 'help' for assistance.";

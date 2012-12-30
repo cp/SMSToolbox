@@ -1,5 +1,5 @@
 <?php
-header('Refresh: 3');
+header('Refresh: 2');
 
 include_once('includes/dbfunc.inc.php');
 
