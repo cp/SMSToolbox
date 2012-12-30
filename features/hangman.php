@@ -13,7 +13,7 @@ class hangman {
             case "reset":
                 return hangman::reset($body['From']);
             case "help":
-                return "hangman start, hangman reset, hangman <letter>";
+                return "hangman start, hangman reset, hangman (letter)";
             default:
                 return hangman::cont($body['From'], $body['Body']['feature']);
                 break;
