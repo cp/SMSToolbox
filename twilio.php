@@ -81,6 +81,7 @@ function process() {
             break;
         case "hangman":
             $response = hangman::process($sms);
+            break;
         case "chat":
             $response = chat::process($sms['Body']);
             break;
