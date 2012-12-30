@@ -4,7 +4,7 @@ require_once('includes/dbfunc.inc.php');
 
 class hangman {
 
-    static $words = array("something is right", "hawaii", "codeday", "seattle");
+    static $words = array("abbey","abruptly","affix","askew","axiom","azure","bagpipes","bandwagon","banjo","bayou","bikini","blitz","bookworm","boxcar","boxful","buckaroo","buffalo","buffoon","cobweb","croquet","daiquiri","disavow","duplex","dwarves","equip","exodus","fishhook","fixable","foxglove","galaxy","galvanize","gazebo","gizmo","glowworm","guffaw","haiku","haphazard","hyphen","icebox","injury","ivory","ivy","jaundice","jawbreaker","jaywalk","jazzy","jigsaw","jiujitsu","jockey","jovial","joyful","juicy","jumbo","kazoo","keyhole","khaki","kilobyte","kiosk","kiwifruit","knapsack","larynx","luxury","marquis","megahertz","microwave","mystify","nightclub","nowadays","numbskull","ovary","oxidize","oxygen","pajama","peekaboo","pixel","pizazz","pneumonia","polka","quartz","quiz","quorum","razzmatazz","rhubarb","rickshaw","schizophrenia","sphinx","spritz","squawk","subway","swivel","topaz","unknown","unworthy","unzip","uptown","vaporize","vixen","vodka","vortex","walkway","waltz","wavy","waxy","wheezy","whiskey","whomever","wimpy","wizard","woozy","xylophone","yachtsman","yippee","youthful","zephyr","zigzag","zilch","zodiac","zombie");
 
     public static function process($body) {
         switch ($body['Body']['feature']) {
@@ -32,7 +32,7 @@ class hangman {
         $current_word = preg_replace("/[a-zA-Z]/", "_", $currentGameWord);
 
         startGame($msgFrom, $currentGameWord, $current_word);
-        return $current_word . "\nGuesses Left: 0 / 5";
+        return $current_word . "\nGuesses Left: 5 / 5";
     }
 
     /**
@@ -81,7 +81,7 @@ class hangman {
                 quitGame ($msgFrom);
                 return "Sorry you lost!";
             }
-            $returnVal = "\nGuesses Left: ".$guesses." / 5";
+            $returnVal = "\nGuesses Left: ".(5-$guesses)." / 5";
             updateGame($msgFrom, $current_word, $guesses);
         }
 
