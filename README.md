@@ -12,6 +12,10 @@ Balls is devided into apps, features, and commands. For example Ebay would be an
 This takes a keyword, searches Ebay, and finds the average price of a product.
 
 ##Weather
+###Current
+This gets the current temperature and condition from your location. (in development)
+###24hours
+This gets the forcast for the next 24 hours.
 ##Bus Times
 ##YouTube
 ##Ski Conditions
