@@ -1,6 +1,6 @@
 Super awesome service that allows you to rule the world over SMS. After reading the instructions below, text (360) 450-2744 to try it out.
 
-Balls is devided into apps, features, and commands. For example Ebay would be an app, avgprice would be a feature, and skateboard would be a command.
+SMS Toolbox is devided into apps, features, and commands. For example Ebay would be an app, avgprice would be a feature, and skateboard would be a command.
 
 ##Real life examples
 *  eBay search skateboard
