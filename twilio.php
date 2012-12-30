@@ -52,7 +52,7 @@ function process() {
     $msg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
     $response = "";
-    switch ($body["app"]) {
+    switch (strtolower($body["app"])) {
         case "ebay":
             $response = ebay::process($body);
             break;
