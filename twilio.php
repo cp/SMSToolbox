@@ -59,7 +59,7 @@ function process() {
     $sms['Body'] = $body;
 
     // insert the message into the database
-    //  insertMessage($sms);
+     // insertMessage($sms);
 
     header("content-type: text/xml");
 
