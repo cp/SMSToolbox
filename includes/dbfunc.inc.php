@@ -15,6 +15,52 @@ function insertSomeTable($someArgs) {
     DB::query($insertQuery);
 }
 
+function insertMessage($body){
+    $query = "INSERT INTO 
+                        message
+                    (
+                        sid, 
+                        date_created,
+                        date_updated,
+                        date_sent,
+                        account_sid,
+                        message_from,
+                        message_to,
+                        message_body,
+                        status,
+                        direction,
+                        price,
+                        api_version,
+                        uri,
+                        app,
+                        feature,
+                        command
+                    ) VALUES
+                    (
+                    '".DB::escape($body['Sid'])."',
+                    '".DB::escape($body['DateCreated'])."',
+                    '".DB::escape($body['DateUpdated'])."',
+                    '".DB::escape($body['DateSent'])."',
+                    '".DB::escape($body['AccountSid'])."',
+                    '".DB::escape($body['From'])."',
+                    '".DB::escape($body['To'])."',
+                    '".DB::escape($body['Body'])."',
+                    '".DB::escape($body['Status'])."',
+                    '".DB::escape($body['Direction'])."',
+                    '".DB::escape($body['Price'])."',
+                    '".DB::escape($body['ApiVersion'])."',
+                    '".DB::escape($body['Uri'])."',
+                    '".DB::escape($body['App'])."',
+                    '".DB::escape($body['Feature'])."',
+                    '".DB::escape($body['Command'])."'
+                    )";
+    echo $query;
+    
+    DB::connect();
+    DB::query($query);
+    DB::close();
+    
+}
 /**
  * probably shouldn't use this.....
  * @param type $obj
