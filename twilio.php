@@ -54,7 +54,8 @@ function process() {
         case "ebay":
             $response = ebay::process($body);
             break;
-        case "amazon":
+        case "weather":
+        	$response = weather::process($body);
             break;
         default:
             break;
