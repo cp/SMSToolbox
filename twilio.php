@@ -21,14 +21,23 @@ function __autoload($class_name) {
 function getCommand($message) {
     $args = split(" ", $message);
 
-    $command = "";
-    for ($i = 2; $i < sizeof($args); ++$i)
-        $command .= $args[$i];
+    $num_args = sizeof($args);
+    if ($num_args > 2) {
 
+        $command = "";
+        for ($i = 2; $i < $num_args; ++$i) {
+            $command .= $args[$i];
+        }
+        $feature = $args[1];
+
+    } else {
+        $feature = '';
+        $command = '';
+    }
     $return_args = Array(
         "app" =>  $args[0],
-        "feature" => $args[1],
         "command" => $command,
+        "feature" => $feature,
     );
 
     return $return_args;
@@ -45,21 +54,22 @@ function getCommand($message) {
 function process() {
 
     $sms = $_REQUEST;
-    $body = $getCommand($_REQUEST['Body']);
+    $body = getCommand($_REQUEST['Body']);
     $sms['Body'] = $body;
 
     header("content-type: text/xml");
     $msg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
     $response = "";
-    switch (strtolower($body["app"])) {
+    switch (strtolower($sms["Body"]["app"])) {
         case "ebay":
-            $response = ebay::process($body);
+            $response = ebay::process($sms['Body']);
             break;
         case "weather":
-        	$response = weather::process($body);
+            $response = weather::process($body);
             break;
         default:
+            $response == "Need to put ebay";
             break;
     }
 
