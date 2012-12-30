@@ -8,8 +8,10 @@ class chance {
                 return chance::coinFlip();
             case "roll":
                 return chance::rollDice($body['command']);
+            case "help":
+                return "chance flip, chance roll [max], chance roll [min] [max]";
             default:
-                echo "Feature not found!";
+                echo "Feature not found! Type 'chance help' for assistance.";
                 break;
         }
     }
