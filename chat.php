@@ -16,10 +16,10 @@ html {
 	margin-left: 10px;
 }
 p {
-	font-family: helvetica;
+	font-family: courier;
 	font-size: 50px;
 	line-height: .00000001em;
-	color: #FFF;
+	color: #33FF00;
 }
 </style>
 <script type="text/javascript">
