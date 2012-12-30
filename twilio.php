@@ -55,13 +55,11 @@ function getCommand($message) {
 function process() {
 
     $sms = $_REQUEST;
-    $body = getCommand($_REQUEST['Body']);
-    $sms['Body'] = $body;
 
     // insert the message into the database
      // insertMessage($sms);
 
-    if($_REQUEST['Body'] == "" || $_REQUEST['Body'] == "help")
+    if($_REQUEST['Body'] == "" || strtolower($_REQUEST['Body']) == "help")
     {
         $sms['Body'] = Array("app" => "help");
     }else
@@ -97,10 +95,10 @@ function process() {
             $response = chat::process($sms['Body']);
             break;
         case "help":
-            $response = "ebay, weather, chance, ascii, hangman, chat";
+            $response = "Welcome to balls bot. Make use of one of the following features: ebay, weather, chance, ascii, hangman, chat";
             break;
         default:
-            $response == "Invalid feature request";
+            $response == "Invalid feature request. Type 'help' for assistance.";
             break;
     }
 
