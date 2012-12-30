@@ -1,5 +1,5 @@
 <?php
-//header('Refresh: 3');
+header('Refresh: 3');
 
 include_once('includes/dbfunc.inc.php');
 
@@ -22,12 +22,12 @@ p {
 	color: #FFF;
 }
 </style>
-<script type="text/javascript">
+<!--<script type="text/javascript">
     var source = new EventSource('stream.php');
     source.addEventListener('message', function(e) {
         alert(e.data);
     }, false);
-</script>
+</script> -->
 <div id="chat"><p><?php echo $line['data']; ?></p></div>
 <?php
 }

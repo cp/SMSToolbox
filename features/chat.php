@@ -24,6 +24,7 @@ class chat {
         
         insertChatLine($number, $command, $room);
 
+        // post to stream
     }
 }
 ?>
