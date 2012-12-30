@@ -1,13 +1,19 @@
 <?php
 
 class ebay {
-
+    static $endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
+    static $appid = 'QuintinC-6db3-4c4f-a824-e6dfbc49a102';  // You will need to supply your own AppID
+    static $version = '1.0.0';  // API version supported by your application
+    static $globalid = 'EBAY-US';
+        
     public static function process($body) {
         switch($body['feature']) {
             case "avg":
                 return ebay::getAvgPrice($body['command']);
+            case "search":
+                return ebay::getSearchResults($body['command']);
             default:
-                echo "Feature not found!";
+                return "Feature not found!";
                 break;
         }
     }
@@ -17,19 +23,14 @@ class ebay {
      * @return type
      */
     public static function getAvgPrice($keywords) {
-        $endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
-        $appid = 'QuintinC-6db3-4c4f-a824-e6dfbc49a102';  // You will need to supply your own AppID
-        $version = '1.0.0';  // API version supported by your application
-
-        $globalid = 'EBAY-US';
-
+       
         $safequery = urlencode($keywords);  // Make the query URL-friendly
         // Construct getMostWatchedItems call with maxResults and categoryId as input
-        $apicalla = "$endpoint?";
+        $apicalla = ebay::$endpoint."?";
         $apicalla .= "OPERATION-NAME=findItemsByKeywords";
-        $apicalla .= "&SERVICE-VERSION=$version";
-        $apicalla .= "&SECURITY-APPNAME=$appid";
-        $apicalla .= "&GLOBAL-ID=$globalid";
+        $apicalla .= "&SERVICE-VERSION=".ebay::$version;
+        $apicalla .= "&SECURITY-APPNAME=".ebay::$appid;
+        $apicalla .= "&GLOBAL-ID=".ebay::$globalid;
         $apicalla .= "&keywords=$safequery";
         $apicalla .= "&paginationInput.entriesPerPage=20";
 
@@ -60,6 +61,48 @@ class ebay {
                     $itemCount++;
                 }
                 return $avg / $itemCount;
+            }
+        } else {
+            $retna = "Call used was: $apicalla";
+        }  // End if response exists
+        // Return the function's value
+        return $retna;
+    }
+    
+    public static function getSearchResults($keywords) {
+        $safequery = urlencode($keywords);  // Make the query URL-friendly
+        // Construct getMostWatchedItems call with maxResults and categoryId as input
+        $apicalla = ebay::$endpoint."?";
+        $apicalla .= "OPERATION-NAME=findItemsByKeywords";
+        $apicalla .= "&SERVICE-VERSION=".ebay::$version;
+        $apicalla .= "&SECURITY-APPNAME=".ebay::$appid;
+        $apicalla .= "&GLOBAL-ID=".ebay::$globalid;
+        $apicalla .= "&keywords=$safequery";
+        $apicalla .= "&paginationInput.entriesPerPage=20";
+
+         // Load the call and capture the document returned by eBay API
+        $resp = simplexml_load_file($apicalla);
+
+        // Check to see if the response was loaded, else print an error
+        if ($resp) {
+            // Set return value for the function to null
+            $retna = '';
+
+            // Verify whether call was successful
+            if ($resp->ack == "Success") {
+
+                // If there were no errors, build the return response for the function
+
+                $results = "";
+                $avg = 0;
+                $itemCount = 0;
+                foreach ($resp->searchResult->item as $item) {
+                    // print_r($item);
+                    // $link = $item->viewItemURL;
+                    $title = $item->title;
+                    $results .= "$title - ".$item->sellingStatus->currentPrice;
+                }
+                return $results;
             }
         } else {
             $retna = "Call used was: $apicalla";
