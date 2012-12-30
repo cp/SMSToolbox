@@ -122,4 +122,24 @@ function updateGame($msgFrom, $current_word, $guesses)
     DB::query($query);
     DB::close();
 }
+
+/****************************************************************/
+/* Chat code                                                 */
+/****************************************************************/
+
+function getAllChat() {
+    $query  = "SELECT * FROM chat ORDER BY id DESC";
+    DB::connect();
+    $result = DB::query($query);
+    DB::close();
+    
+    return $result;
+}
+
+function insertChatLine($number, $command, $room) {
+    $query = "INSERT INTO chat (number, data, room) VALUES ('$number', '$command', '$room')";
+    DB::connect();
+    DB::query($query);
+    DB::close();
+}
 ?>

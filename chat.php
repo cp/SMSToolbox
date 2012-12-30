@@ -1,9 +1,9 @@
 <?php
-header('Refresh: 3');
-mysql_connect("localhost", "root", "root") or die("Connection Failed");
-mysql_select_db("balls")or die("Connection Failed");
-$query = "SELECT * FROM chat ORDER BY id DESC";
-$result = mysql_query($query);
+//header('Refresh: 3');
+
+include_once('includes/dbfunc.inc.php');
+
+$result = getAllChat();
 while ($line = mysql_fetch_assoc($result)) {
 ?>
 <style>
@@ -22,6 +22,12 @@ p {
 	color: #FFF;
 }
 </style>
+<script type="text/javascript">
+    var source = new EventSource('stream.php');
+    source.addEventListener('message', function(e) {
+        alert(e.data);
+    }, false);
+</script>
 <div id="chat"><p><?php echo $line['data']; ?></p></div>
 <?php
 }

@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS `message`;
 DROP TABLE IF EXISTS `hangman`;
+DROP TABLE IF EXISTS `chat`;
 
 CREATE TABLE `message`(
 	message_id		INT UNSIGNED	NOT NULL	AUTO_INCREMENT,
@@ -29,4 +30,13 @@ CREATE TABLE `hangman` (
     word            varchar(50)             NOT NULL,
     current_word    varchar(50)             NOT NULL,
     PRIMARY KEY     (game_id)
+);
+
+CREATE TABLE `chat` (
+    `id`            INT(11)                 NOT NULL AUTO_INCREMENT,
+    `number`        INT(15)                 NOT NULL,
+    `data`          longtext                NOT NULL,
+    `room`          longtext                NOT NULL,
+    PRIMARY KEY     (`id`),
+    KEY     `id` (`id`)
 );
