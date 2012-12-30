@@ -60,12 +60,8 @@ function process() {
     $sms['Body'] = $body;
     
     // insert the message into the database
-<<<<<<< HEAD
- //  insertMessage($sms);
-=======
-   //insertMessage($sms);
->>>>>>> ce6bec47c209e372e5f2904cc403253ccf891312
-    
+     //  insertMessage($sms);
+
     header("content-type: text/xml");
     
     $msg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
