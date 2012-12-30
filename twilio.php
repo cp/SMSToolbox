@@ -57,8 +57,10 @@ function process() {
     $msg .= "<Response>
                 <Sms>$response</Sms>
              </Response>";
+    
+    return $msg;
 }
 
-process();
+echo process();
 
 ?>
