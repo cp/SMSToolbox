@@ -77,6 +77,9 @@ function process() {
         case "chance":
             $response = chance::process($sms['Body']);
             break;
+        case "ascii":
+            $response = ascii::process($sms['Body']);
+            break;
         default:
             $response == "Invalid feature request";
             break;
