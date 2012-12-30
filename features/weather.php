@@ -29,7 +29,7 @@ class weather {
 				  $parsed_json = json_decode($json_string);
 				  $location = $parsed_json->{'location'}->{'city'};
 				  $weather = $parsed_json->{'current_observation'}->{'weather'};
-				  $text =  "Current condition in {$FromCity} is: {$weather}";
+				  $text =  "Current condition in {$FromCity} is {$weather}.";
 				  return $text;
 				break;
 			default:
@@ -49,7 +49,7 @@ class weather {
 				  $parsed_json = json_decode($json_string);
 				  $location = $parsed_json->{'location'}->{'city'};
 				  $temp_f = $parsed_json->{'current_observation'}->{'temp_f'};
-				  $text =  "Current condition in {$FromCity} is: {$temp_f}";
+				  $text =  "Current temperature in {$FromCity} is {$temp_f}.";
 				  return $text;
 				break;
 			default:
