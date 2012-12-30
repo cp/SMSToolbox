@@ -15,7 +15,7 @@ SMS Toolbox is devided into apps, features, and commands. For example Ebay would
 #Services
 
 ##Ebay
-###avgprice
+###avg
 This finds the average price of a product on eBay.
 *  (product): This is the product that you run a search on.
 
