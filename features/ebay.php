@@ -1,11 +1,11 @@
 <?php
 
-class eBay {
+class ebay {
 
-    public static function process($feature, $command) {
-        switch($feature) {
+    public static function process($body) {
+        switch($body['feature']) {
             case "avg":
-                return eBay::getAvgPrice($command);
+                return ebay::getAvgPrice($body['command']);
             default:
                 echo "Feature not found!";
                 break;
@@ -62,7 +62,7 @@ class eBay {
                 return $avg / $itemCount;
             }
         } else {
-            $retna .= "Call used was: $apicalla";
+            $retna = "Call used was: $apicalla";
         }  // End if response exists
         // Return the function's value
         return $retna;
