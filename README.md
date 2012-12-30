@@ -13,6 +13,7 @@ This takes a keyword, searches Ebay, and finds the average price of a product.
 ###condition
 This returns the condition, such as 'clear' or 'partly cloudy'.
 *  current: This is the command to get the current condition.
+
 ###temperature
 This returns the temperature in fahrenheit.
 *  current: This is the command to get the current condition.
