@@ -18,14 +18,20 @@ function __autoload($class_name) {
  * @param type $feature
  * @param type $command
  */
-function getCommand($message, &$app, &$feature, &$command) {
+function getCommand($message) {
     $args = split(" ", $message);
 
-    $app = $args[0];
-    $feature = $args[1];
     $command = "";
     for ($i = 2; $i < sizeof($args); ++$i)
         $command .= $args[$i];
+
+    $return_args = Array(
+        "app" =>  $args[0],
+        "feature" => $args[1],
+        "command" => $command,
+    );
+
+    return $return_args;
 }
 
 /***********************************************************************/
@@ -35,20 +41,18 @@ function getCommand($message, &$app, &$feature, &$command) {
 /**
  * The main function that does everything
  */
+
 function process() {
 
-    $app = "";
-    $feature = "";
-    $command = "";
-    getCommand($_REQUEST['Body'], $app, $feature, $command);
+    $args = $getCommand($_REQUEST['Body']);
 
     header("content-type: text/xml");
     $msg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
     $response = "";
-    switch ($app) {
-        case $app:
-            $response = ebay::process($feature, $command);
+    switch ($args["app"]) {
+        case "ebay":
+            $response = ebay::process($args);
             break;
         default:
             break;
@@ -57,7 +61,7 @@ function process() {
     $msg .= "<Response>
                 <Sms>$response</Sms>
              </Response>";
-    
+
     return $msg;
 }
 
