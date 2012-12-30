@@ -44,7 +44,9 @@ function getCommand($message) {
 
 function process() {
 
+    $sms = $_REQUEST;
     $body = $getCommand($_REQUEST['Body']);
+    $sms['Body'] = $body;
 
     header("content-type: text/xml");
     $msg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
@@ -54,7 +56,8 @@ function process() {
         case "ebay":
             $response = ebay::process($body);
             break;
-        case "amazon":
+        case "weather":
+        	$response = weather::process($body);
             break;
         default:
             break;

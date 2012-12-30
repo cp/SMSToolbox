@@ -11,3 +11,8 @@ Balls is devided into apps, features, and commands. For example Ebay would be an
 ###Avgprice
 This takes a keyword, searches Ebay, and finds the average price of a product.
 
+##Weather
+##Bus Times
+##YouTube
+##Ski Conditions
+##Fandango / Movie Times
