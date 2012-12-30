@@ -35,7 +35,10 @@ This returns the temperature in fahrenheit.
 ##Hangman
 ###start
 This starts a new hangman game with a randomly generated word.
-
+###<letter>
+This guesses the letter hangman <letter>
+###reset
+Starts the game over
 ###help
 This retrives the list of possible commands while playing hangman.
 
@@ -49,6 +52,9 @@ This determines what room your message is sent to.
 *  (message): This is the text that is sent to the chatroom.
 
 ##Chance
-###flipcoin
+###flip
 This allows you to flip a coin.
 *  heads/tails: This is how you make your choice.
+###roll <low> <high>
+Allows you to roll a die between <low> <high>
+
