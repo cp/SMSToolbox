@@ -1,7 +1,13 @@
 <?php
-    header("content-type: text/xml");
-    echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-   
+
+// include all features classes
+//function __autoload($class_name) {
+//    include 'features/'.$class_name . '.php';
+//}
+
+header("content-type: text/xml");
+echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+
 $urltoshorten = $_REQUEST['Body'];
 
 
@@ -20,8 +26,9 @@ $urltoshorten = $_REQUEST['Body'];
 	curl_close($ch);
 }
 
+//eBay::getAvgPrice("keywords");
+
 ?>
 <Response>
     <Sms>Short URL: <?php echo $output ?></Sms>
 </Response>
-
