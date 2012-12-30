@@ -14,5 +14,5 @@ $aprice = eBay::getAvgPrice($keyword);
 
 ?>
 <Response>
-    <Sms>Average Price: <?php echo $aprice ?></Sms>
+    <Sms>Average Price: $<?php echo $aprice ?></Sms>
 </Response>
