@@ -1,6 +1,6 @@
 <?php
 
-//include_once('includes/dbfunc.inc.php');
+include_once('includes/dbfunc.inc.php');
 /* * ******************************************************************** */
 /* Helper functions                                                    */
 /* * ******************************************************************** */
@@ -55,12 +55,27 @@ function getCommand($message) {
 function process() {
 
     $sms = $_REQUEST;
+<<<<<<< HEAD
     $body = getCommand($_REQUEST['Body']);
     $sms['Body'] = $body;
 
     // insert the message into the database
      // insertMessage($sms);
 
+=======
+    if($_REQUEST['Body'] == "" || $_REQUEST['Body'] == "help")
+    {
+        $sms['Body'] = Array("app" => "help");
+    }else
+    {
+        $body = getCommand($_REQUEST['Body']);
+        $sms['Body'] = $body;
+        // insert the message into the database
+        insertMessage($sms);        
+    }
+    
+    
+>>>>>>> ffb0bcd042d7d1b359d587b01462124d968990e0
     header("content-type: text/xml");
 
     $msg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
@@ -84,6 +99,9 @@ function process() {
             break;
         case "chat":
             $response = chat::process($sms['Body']);
+            break;
+        case "help":
+            $response = "ebay, weather, chance, ascii, hangman, chat";
             break;
         default:
             $response == "Invalid feature request";
