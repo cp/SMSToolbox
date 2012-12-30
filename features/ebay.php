@@ -13,6 +13,7 @@ class ebay {
                 return ebay::getAvgPrice($body['command']);
             case "search":
                 return ebay::getSearchResults($body['command']);
+            case "":
             case "help":
                 return "ebay avg item, ebay search item";
             default:

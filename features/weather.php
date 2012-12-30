@@ -11,6 +11,9 @@ class weather {
 			case "temperature":
                 return weather::temperature($body['command']);
 				break;
+            case "":
+            case "help":
+                return "weather condition, weather temperature";
             default:
                 return "Feature not found!";
                 break;

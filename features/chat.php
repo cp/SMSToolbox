@@ -1,7 +1,4 @@
 <?php
-header('Content-Type: text/event-stream');
-header('Cache-Control: no-cache'); // recommended to prevent caching of event data.
-
 require_once('includes/dbfunc.inc.php');
 
 class chat {
@@ -11,6 +8,9 @@ class chat {
             case "cd":
                 return chat::cd($body['command']);
 				break;
+            case "":
+            case "help":
+                return "chat room message";
             default:
                 return "Room not found!";
                 break;

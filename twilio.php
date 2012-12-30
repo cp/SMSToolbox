@@ -22,7 +22,9 @@ function __autoload($class_name) {
  */
 function getCommand($message) {
     $args = explode(" ", $message);
-
+    $command = "";
+    $feature = "";
+    
     $num_args = sizeof($args);
     if ($num_args > 2) {
 

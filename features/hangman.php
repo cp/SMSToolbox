@@ -12,6 +12,7 @@ class hangman {
                 return hangman::start($body['From']);
             case "reset":
                 return hangman::reset($body['From']);
+            case "":
             case "help":
                 return "hangman start, hangman reset, hangman (letter)";
             default:

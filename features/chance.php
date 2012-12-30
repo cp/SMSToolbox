@@ -8,6 +8,7 @@ class chance {
                 return chance::coinFlip();
             case "roll":
                 return chance::rollDice($body['command']);
+            case "":
             case "help":
                 return "chance flip, chance roll [max], chance roll [min] [max]";
             default:
