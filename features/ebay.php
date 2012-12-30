@@ -50,8 +50,7 @@ class eBay {
                     $avg += $price;
                     $itemCount++;
                 }
-                $avg = $avg / $itemCount;
-                echo "Avg: " . $avg;
+                return $avg / $itemCount;
             }
         } else {
             $retna .= "Call used was: $apicalla";
