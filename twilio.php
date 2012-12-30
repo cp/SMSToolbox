@@ -19,7 +19,7 @@ function __autoload($class_name) {
  * @param type $command
  */
 function getCommand($message) {
-    $args = split(" ", $message);
+    $args = explode(" ", $message);
 
     $num_args = sizeof($args);
     if ($num_args > 2) {
