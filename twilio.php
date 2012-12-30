@@ -44,15 +44,17 @@ function getCommand($message) {
 
 function process() {
 
-    $args = $getCommand($_REQUEST['Body']);
+    $body = $getCommand($_REQUEST['Body']);
 
     header("content-type: text/xml");
     $msg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
     $response = "";
-    switch ($args["app"]) {
+    switch ($body["app"]) {
         case "ebay":
-            $response = ebay::process($args);
+            $response = ebay::process($body);
+            break;
+        case "amazon":
             break;
         default:
             break;
